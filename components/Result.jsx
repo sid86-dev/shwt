@@ -27,7 +27,7 @@ export default function Result({ data }) {
     };
 
     return (
-    <div className="container d-flex justify-content-center mt-3">
+    <div className="container d-flex justify-content-center mt-2 mb-5">
             <div className="row">
                 <div className="col">
                     <div className="input-group mb-3">

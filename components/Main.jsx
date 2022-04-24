@@ -37,7 +37,7 @@ export default function Main() {
     };
 
     return (
-        <>
+        <div className="mb-5">
             <div className="newsletter-subscribe">
         <div className="container">
             <div className="intro">
@@ -69,7 +69,7 @@ export default function Main() {
         <Result data={res} />
             }
 
-        </>
+        </div>
     )
 }
 

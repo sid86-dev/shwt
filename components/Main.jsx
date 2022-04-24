@@ -13,7 +13,7 @@ export default function Main() {
 
         setRes(null);
 
-        if (input !== '') {
+        if (input != '') {
             setPending(true);
 
             var data = {

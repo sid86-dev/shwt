@@ -1,4 +1,3 @@
-
 export default function Navbar() {
     return (
         <header className="d-flex justify-content-center py-3">

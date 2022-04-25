@@ -9,7 +9,7 @@ export default function Home() {
     <div >
       <Head>
         <title>Shwt</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <meta name="description" content="Free URL shortener to create perfect URLs for your business. Shwt is a URL shortening service and a link management platform." />
         <meta name="robots" content="noindex,nofollow" />

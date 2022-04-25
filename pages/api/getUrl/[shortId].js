@@ -10,14 +10,15 @@ async function handler(req, res) {
         console.error(e);
     }
 
-    const shortUrl = await MongoClient.db('shwt').collection('links').findOne({ _id: shortId })
+    const client = await MongoClient.db('shwt').collection('links')
+    const shortUrl = client.findOne({ _id: shortId })
 
 
     if (shortUrl == null) return res.json({
         'status': 'url does not exist'
     })
 
-    await MongoClient.db('shwt').collection('links').updateOne({ _id: shortId }, { $set: { clicks: shortUrl.clicks+1 } });
+    await client.updateOne({ _id: shortId }, { $set: { clicks: shortUrl.clicks+1 } });
 
     res.status(200).json({
         'fullUrl': shortUrl.fullUrl,

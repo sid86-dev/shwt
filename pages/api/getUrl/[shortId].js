@@ -11,7 +11,7 @@ async function handler(req, res) {
     }
 
     const client = await MongoClient.db('shwt').collection('links')
-    const shortUrl = client.findOne({ _id: shortId })
+    const shortUrl = await client.findOne({ _id: shortId })
 
 
     if (shortUrl == null) return res.json({

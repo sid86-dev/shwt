@@ -2,7 +2,7 @@ import MongoClient from '../../../utils/mongodb'
 
 async function handler(req, res) {
 
-    const shortId = req.query.shortId
+    const { shortId } = req.query
 
     try {
         await MongoClient.connect();
@@ -20,10 +20,7 @@ async function handler(req, res) {
 
     await client.updateOne({ _id: shortId }, { $set: { clicks: shortUrl.clicks+1 } });
 
-    res.status(200).json({
-        'fullUrl': shortUrl.fullUrl,
-        'shortId': shortId
-    })
+    res.status(200).json(shortUrl)
 }
 
 export default handler;

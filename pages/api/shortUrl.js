@@ -24,14 +24,15 @@ async function handler(req, res) {
         console.error(e);
     }
 
-    const fullUrl = req.body.fullUrl
+    const { fullUrl } = req.body
     const shortId = await makeId(7)
 
     const data = {
         _id: shortId,
         fullUrl: fullUrl,
-        clicks: 0
-    }
+        clicks: 0,
+        created: new Date()
+    };
 
     await MongoClient.db('shwt').collection('links').insertOne(data);
 

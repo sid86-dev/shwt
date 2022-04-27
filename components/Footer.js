@@ -15,6 +15,8 @@ export default function Footer() {
                     <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">Source</a></li>
                     <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">Pricing</a></li>
                     <li className="nav-item"><a target="_blank" rel="noreferrer" href="https://qrgen-beta.vercel.app/" className="nav-link px-2 text-muted">QR Gen</a></li>
+                <li className="nav-item"><Link  href="/"><img width="45px" className="img-fluid" src="/favicons/favicon.ico" /></Link></li>
+                    
                 </ul>
             </div>
         </footer>)

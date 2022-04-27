@@ -546,6 +546,11 @@ buffer@^5.6.0:
     base64-js "^1.3.1"
     ieee754 "^1.1.13"
 
+build-id@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/build-id/-/build-id-1.5.0.tgz#76f8bc276a1d61b5328a3c8e8c0c653f6db9e668"
+  integrity sha512-ARNBps1Ae0Ejm/gSd/Qgls5c79uWx1jLcv1+nd+rq1SDahua5bLXm2O82nv5giQTx94ww6PzaAateD2t9nxEuA==
+
 call-bind@^1.0.0, call-bind@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/call-bind/-/call-bind-1.0.2.tgz#b1d4e89e688119c3c9a903ad30abb2f6a919be3c"

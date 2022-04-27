@@ -13,7 +13,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <meta name="description" content="Free URL shortener to create perfect URLs for your business. Shwt is a URL shortening service and a link management platform." />
         <meta name="robots" content="noindex,nofollow" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicons/favicon.ico" />
       </Head>
 
       <Navbar />

@@ -41,8 +41,8 @@ export default function Main() {
             <div className="newsletter-subscribe">
         <div className="container">
             <div className="intro">
-                <h2 className="text-center">Create short link</h2>
-                <p className="text-center">Free URL shortener to create perfect URLs for your business. Shwt is a URL shortening service and a link management platform. </p>
+                <h2 className="text-center">Create short Urls</h2>
+                <p className="text-center">Free URL shortener to create perfect URLs. Shwt is a URL shortening service and a link management platform. </p>
             </div>
             <form className="form-inline mx-3" >
                 <div className="form-group">

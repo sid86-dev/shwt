@@ -1,18 +1,8 @@
 import MongoClient from '../../utils/mongodb'
+import buildId from 'build-id';
 
-async function handler(req, res) {
 
-    function makeId(length) {
-        var result           = '';
-        var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        var charactersLength = characters.length;
-        for ( var i = 0; i < length; i++ ) {
-          result += characters.charAt(Math.floor(Math.random() * 
-     charactersLength));
-       }
-       return result;
-    }
-    
+async function handler(req, res) {    
 
     if (req.method !== 'POST') {
         res.status(500).json({ message: 'Soory this is post route' })
@@ -25,7 +15,7 @@ async function handler(req, res) {
     }
 
     const { fullUrl } = req.body
-    const shortId = await makeId(7)
+    const shortId = await buildId(7)
 
     const data = {
         _id: shortId,

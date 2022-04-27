@@ -15,8 +15,15 @@ async function handler(req, res) {
     }
 
     const { fullUrl } = req.body
-    const shortId = await buildId(7)
+    const client = await MongoClient.db('shwt').collection('links')
+    const isAvailable = await client.findOne({ 'fullUrl': fullUrl })
+    
+    if(isAvailable != null) return res.json({
+        'fullUrl': isAvailable.fullUrl,
+        'shortId': isAvailable._id
+    })
 
+    const shortId = await buildId(7)
     const data = {
         _id: shortId,
         fullUrl: fullUrl,
@@ -24,7 +31,7 @@ async function handler(req, res) {
         created: new Date()
     };
 
-    await MongoClient.db('shwt').collection('links').insertOne(data);
+    await client.insertOne(data);
 
     res.status(200).json({
         'fullUrl': fullUrl,

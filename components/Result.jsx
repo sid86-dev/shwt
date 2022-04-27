@@ -5,14 +5,14 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function Result({ data }) {
 
-    const [shortUrl, setShortUrl] = useState(`https://shwt.xyz/${data.shortId}`)
+    const [shortUrl, setShortUrl] = useState(`shwt.xyz/${data.shortId}`)
 
     const ch = (e) => {
         setShortUrl(e.target.value);
     }
 
     const toClipboard = () => {
-        copy(shortUrl);
+        copy(`https://${shortUrl}`);
         toast('📋 Text copied to clipboard', {
             position: "top-center",
             autoClose: 1200,
@@ -38,7 +38,7 @@ export default function Result({ data }) {
                 </div>
                 <div className="col-8">
 
-                <span className="text-muted text-center">Your old url was {data.fullUrl.length} characters long and the new short url is {shortUrl.length} characters long.</span>
+                <span className="text-muted text-center">Your old url was {data.fullUrl.length} characters long and the new short url is 24 characters long.</span>
 </div>
             </div>
 

@@ -20,8 +20,6 @@ export default function Main() {
                 'fullUrl': input
             };
 
-            console.log(data)
-
             axios.post(postUrl, data)
                 .then(function (response) {
                     setRes(response.data);

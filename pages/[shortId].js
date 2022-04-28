@@ -14,7 +14,7 @@ RedirectUrl.getInitialProps = async (ctx) => {
 
     if (res) {
         res.writeHead(302, { // or 301
-            Location: data.fullUrl || '/test',
+            Location: data.fullUrl || `/invalid?timeStamp=${new Date().getTime()}`,
         });
         res.end();
     }

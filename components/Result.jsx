@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function Result({ data }) {
 
-    const [shortUrl, setShortUrl] = useState(`shwt.xyz/${data.shortId}`)
+    const [shortUrl, setShortUrl] = useState(`shwt.xyz/${data._id}`)
 
     const ch = (e) => {
         setShortUrl(e.target.value);

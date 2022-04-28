@@ -1,24 +1,22 @@
-import MongoClient from '../../../utils/mongodb'
+import dbConnect from '../../../utils/dbConnect';
+import urlSchema from '../../../utils/models/urlSchema'
+
+dbConnect();
 
 async function handler(req, res) {
 
     const { shortId } = req.query
 
-    try {
-        await MongoClient.connect();
-    } catch (e) {
-        console.error(e);
-    }
+    const shortUrl = await urlSchema.findById(shortId);
 
-    const client = await MongoClient.db('shwt').collection('links')
-    const shortUrl = await client.findOne({ _id: shortId })
-
-
+//  response if url is invalid
     if (shortUrl == null) return res.json({
         'status': 'url does not exist'
     })
 
-    await client.updateOne({ _id: shortId }, { $set: { clicks: shortUrl.clicks+1 } });
+ // increment the clicks   
+    shortUrl.clicks++
+    await shortUrl.save()
 
     res.status(200).json(shortUrl)
 }

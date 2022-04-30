@@ -3,8 +3,9 @@ import React, { useState, createContext } from 'react';
 const initialState = {
     authorized: false,
     name: "Sid",
-    nav: 'home',
-    user: null
+    nav: '/',
+    user: null,
+    tab: 'login'
 };
 
 export const Context = createContext();

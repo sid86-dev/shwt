@@ -4,7 +4,6 @@ import buildId from 'build-id';
 const UrlSchema = new mongoose.Schema({
     _id: {
         'type': String,
-        default: buildId(10),
         required: true
     },
     email: {
@@ -15,17 +14,14 @@ const UrlSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-        default: 0
     },
     accessId: {
         type: String,
-        required: true,
-        default: buildId(50)
+        default: null
     },
     refreshId: {
         type: String,
-        required: true,
-        default: buildId(70)
+        default: null
     },
     created: {
         type: String,

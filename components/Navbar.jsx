@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { Context } from '../context/Store'
 import { useContext } from 'react';
 
-export default function Navbar({ current }) {
+export default function Navbar() {
 
     const [state, setState] = useContext(Context);
 
@@ -12,10 +12,10 @@ export default function Navbar({ current }) {
                 <li className="nav-item"><Link href="/" >
                     <a onClick={() => setState(prevState => ({
                         ...prevState,
-                        ['nav']: 'home'
+                        ['nav']: '/'
                     }))
                     }
-                        className={state.nav === 'home' ? 'nav-link active' : ('nav-link')}
+                        className={state.nav === '/' ? 'nav-link active' : ('nav-link')}
                      aria-current="page">
                         Home
                     </a>
@@ -27,9 +27,9 @@ export default function Navbar({ current }) {
                     <Link href="/account" >
                         <a onClick={() => setState(prevState => ({
                             ...prevState,
-                            ['nav']: 'account'
+                            ['nav']: '/account'
                         }))}
-                        className={state.nav === 'account' ? 'nav-link active' : ('nav-link')}
+                        className={state.nav === '/account' ? 'nav-link active' : ('nav-link')}
                         >
                             Account
                         </a>

@@ -13,7 +13,6 @@ export default async function handler(req, res) {
         return res.status(500).json({ message: 'Soory this is post route' })
     }
 
-
     // login handler
     const { email, password } = req.body;
     const userData = await userSchema.findOne({
@@ -22,7 +21,7 @@ export default async function handler(req, res) {
 
 
     if (!userData || userData.password !== password) {
-        return res.send("Invalid email or password")
+        return res.status(423).send({ success: true, authorization: true, response: "Email or password is invalid" })
     };
 
 
@@ -45,5 +44,6 @@ export default async function handler(req, res) {
     setCookies('refreshToken', refreshToken, { req, res, maxAge: 60 * 60 * 24 });
 
     // send user back
-    return res.status(200).json({ payload: payload, expired: false });
+    return res.status(200).json({ success: true, authorization: true });
+
 }

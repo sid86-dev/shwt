@@ -5,9 +5,7 @@ import Popper from '@popperjs/core';
 import { Router } from "next/router";
 import NProgress from 'nprogress'
 import Store from '../context/Store';
-import axios from 'axios';
-import { getCookies } from 'cookies-next';
-
+import 'react-toastify/dist/ReactToastify.css';
 
 function MyApp({ Component, pageProps }) {
     NProgress.configure({ showSpinner: false });

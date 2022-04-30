@@ -3,14 +3,13 @@ import { verifyJWT } from '../../../utils/jwt';
 export default async function handler(req, res) {
 
     if (req.method !== 'POST') {
-        res.status(500).json({ message: 'Soory this is post route' })
+        return res.status(500).json({ message: 'Soory this is post route' })
     }
 
     const unAuthorized = { payload: null, expired: true, authorization: false }
     const Authorized = { payload: null, expired: true, authorization: true }
 
     const authHeader = await req.headers.authorization;
-    console.log(authHeader);
 
     if (authHeader) {
 
@@ -20,7 +19,7 @@ export default async function handler(req, res) {
 
         // for valid access token
         if (payload) {
-            res.json({ payload: payload, expired: false, authorization: true })
+            return res.json({ payload: payload, expired: false, authorization: true })
         }
 
         else if (expired) {

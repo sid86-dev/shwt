@@ -8,7 +8,7 @@ dbConnect();
 async function handler(req, res) {    
 
     if (req.method !== 'POST') {
-        res.status(500).json({ message: 'Soory this is post route' })
+        return res.status(500).json({ message: 'Soory this is post route' })
     }
 
     const { fullUrl } = req.body
@@ -24,7 +24,7 @@ async function handler(req, res) {
 
     const shortUrl = await urlSchema.create(data);
 
-    res.status(200).json(shortUrl)
+    return res.status(200).json(shortUrl)
    
 }
 

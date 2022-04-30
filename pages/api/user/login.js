@@ -10,7 +10,7 @@ dbConnect();
 export default async function handler(req, res) {
 
     if (req.method !== 'POST') {
-        res.status(500).json({ message: 'Soory this is post route' })
+        return res.status(500).json({ message: 'Soory this is post route' })
     }
 
 
@@ -45,6 +45,5 @@ export default async function handler(req, res) {
     setCookies('refreshToken', refreshToken, { req, res, maxAge: 60 * 60 * 24 });
 
     // send user back
-    res.status(200).json({ payload: payload, expired: false });
-
+    return res.status(200).json({ payload: payload, expired: false });
 }

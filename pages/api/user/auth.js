@@ -9,7 +9,7 @@ dbConnect();
 
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
-        res.status(500).json({ message: 'Soory this is post route' })
+        return res.status(500).json({ message: 'Soory this is post route' })
     }
 
     const unAuthorized = { payload: null, expired: true, authorization: false }

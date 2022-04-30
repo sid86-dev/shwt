@@ -18,7 +18,7 @@ async function handler(req, res) {
     shortUrl.clicks++
     await shortUrl.save()
 
-    res.status(200).json(shortUrl)
+    return res.status(200).json(shortUrl)
 }
 
 export default handler;

@@ -28,6 +28,11 @@ const UrlSchema = new mongoose.Schema({
         required: true,
         default: new Date(),
     },
+    links: {
+        type: Array,
+        require: false,
+        default: []
+    }
 })
 
 module.exports = mongoose.models.users || mongoose.model('users', UrlSchema);

@@ -5,16 +5,22 @@ dbConnect();
 
 async function handler(req, res) {
 
+    const { app } = req.body;
+
     const { shortId } = req.query
 
     const shortUrl = await urlSchema.findById(shortId);
 
 //  response if url is invalid
     if (shortUrl == null) return res.json({
-        'status': 'url does not exist'
+        status: 'url does not exist'
     })
 
- // increment the clicks   
+    if (app) {
+        return res.status(200).json(shortUrl)
+    }
+
+    // increment the clicks 
     shortUrl.clicks++
     await shortUrl.save()
 

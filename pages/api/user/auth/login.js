@@ -1,6 +1,6 @@
-import dbConnect from '../../../utils/dbConnect';
-import { signJWT, verifyJWT } from '../../../utils/jwt';
-import userSchema from '../../../utils/models/userSchema'
+import dbConnect from '../../../../utils/dbConnect';
+import { signJWT, verifyJWT } from '../../../../utils/jwt';
+import userSchema from '../../../../utils/models/userSchema'
 import { setCookies} from 'cookies-next';
 import buildId from 'build-id'
 
@@ -29,10 +29,10 @@ export default async function handler(req, res) {
     const accessId = buildId(50);
 
     // create tokens
-    const payload = { id: userData._id, email: userData.email, accessId: accessId, lastRefreshId: refreshId }
+    const payload = { userId: userData._id, links: userData.links, email: userData.email, accessId: accessId, lastRefreshId: refreshId }
 
     const accessToken = signJWT(payload, '300s');
-    const refreshToken = signJWT({ userId: userData._id, refreshId: refreshId }, '86400s');
+    const refreshToken = signJWT({ userId: userData._id, links: userData.links, refreshId: refreshId }, '86400s');
 
     // set latest Ids in db
     userData.accessId = accessId;

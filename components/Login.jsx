@@ -7,13 +7,13 @@ import { ToastContainer, toast } from 'react-toastify';
 
 export default function Login() {
     const router = useRouter();
-    const [formData, setFormData] = useState({ email: '', password:''});
+    const [formData, setFormData] = useState({ email: '', password: '' });
     const [state, setState] = useContext(Context);
     const [isDisabled, setDisabled] = useState(true);
 
     useEffect(() => {
         if (formData.email.includes('@') && formData.password.length > 6 && formData.email.length >= 8) {
-                setDisabled(false);
+            setDisabled(false);
         }
         else {
             setDisabled(true);
@@ -30,7 +30,7 @@ export default function Login() {
             password: hashPass
         };
 
-        const promise = axios.post('/api/user/login', data)
+        const promise = axios.post('/api/user/auth/login', data)
         toast.promise(promise, {
             pending: 'Loggin in...',
             success: 'You are logged in!',
@@ -50,7 +50,7 @@ export default function Login() {
     };
 
     return (
-          <>
+        <>
             <ToastContainer
                 position="top-center"
                 autoClose={4000}
@@ -62,34 +62,35 @@ export default function Login() {
                 draggable
                 pauseOnHover
             />
-        <main className="form-signin text-center mt-5">
-            <form onSubmit={loginData}>
+            <main className="form-signin text-center mt-5">
+                <form onSubmit={loginData}>
                     <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
-                <div className="form-floating">
-                    <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com"
-                        value={formData.email} onChange={(e) => setFormData({ email: e.target.value, password: formData.password })}
-                    />
+                    <div className="form-floating">
+                        <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com"
+                            value={formData.email} onChange={(e) => setFormData({ email: e.target.value, password: formData.password })}
+                        />
                         <label htmlFor="floatingInput">Email address</label>
-                </div>
-                <div className="form-floating">
-                    <input type="password" className="form-control" id="floatingPassword" placeholder="Password"
-                        value={formData.password} onChange={(e) => setFormData({ email: formData.email, password: e.target.value})}
-                    />
+                    </div>
+                    <div className="form-floating">
+                        <input type="password" className="form-control" id="floatingPassword" placeholder="Password"
+                            value={formData.password} onChange={(e) => setFormData({ email: formData.email, password: e.target.value })}
+                        />
                         <label htmlFor="floatingPassword">Password</label>
-                </div>
-                <button className="w-100 btn btn-lg btn-primary mt-4" type="submit" disabled={isDisabled}>Sign in</button>
-                <div className="my-3">
-                    <span className="fs-6 text-muted">Create new account <a className="text-underline fw-normal" type="button"
-                        onClick={() => {
-                            router.push('/account?tab=signup');
-                            setState(prevState => ({
-                                ...prevState,
-                                ['tab']: 'signup'
-                            })) }}
-                    >Sign up</a></span>
-                </div>
-            </form>
+                    </div>
+                    <button className="w-100 btn btn-lg btn-primary mt-4" type="submit" disabled={isDisabled}>Sign in</button>
+                    <div className="my-3">
+                        <span className="fs-6 text-muted">Create new account <a className="text-underline fw-normal" type="button"
+                            onClick={() => {
+                                router.push('/account?tab=signup');
+                                setState(prevState => ({
+                                    ...prevState,
+                                    ['tab']: 'signup'
+                                }))
+                            }}
+                        >Sign up</a></span>
+                    </div>
+                </form>
             </main>
-            </>
-                    )
+        </>
+    )
 }

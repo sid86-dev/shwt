@@ -1,6 +1,6 @@
-import dbConnect from '../../../utils/dbConnect';
-import { signJWT, verifyJWT } from '../../../utils/jwt';
-import userSchema from '../../../utils/models/userSchema'
+import dbConnect from '../../../../utils/dbConnect';
+import { signJWT, verifyJWT } from '../../../../utils/jwt';
+import userSchema from '../../../../utils/models/userSchema'
 import { setCookies } from 'cookies-next';
 import buildId from 'build-id'
 

@@ -6,6 +6,7 @@ import Login from '../components/Login';
 import Signup from '../components/Signup';
 import { getCookie, removeCookies } from 'cookies-next';
 import { useRouter } from 'next/router';
+import Profile from '../components/user/Profile';
 
 Account.getInitialProps = async (ctx) => {
     const { query, res, req } = ctx;
@@ -89,14 +90,14 @@ export default function Account({ authData }) {
 
 
     return (
-        <div >
+        <div className="vh-100" >
             <Head>
-                <title>Shwt | {state.name}</title>
+                <title>Shwt | Me</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Head>
             <Navbar />
 
-            {authData.authorization ? <h1>Authorized</h1> : state.tab == 'login' ? < Login /> : <Signup /> }
+            {authData.authorization ? <Profile /> : state.tab == 'login' ? < Login /> : <Signup />}
             
         </div>
     )

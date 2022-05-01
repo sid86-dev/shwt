@@ -49,7 +49,7 @@ export default function Signup() {
             password: hashPass
         };
 
-        const promise = axios.post('/api/user/signup', data);
+        const promise = axios.post('/api/user/auth/signup', data);
 
         toast.promise(promise, {
             pending: 'Creating account...',

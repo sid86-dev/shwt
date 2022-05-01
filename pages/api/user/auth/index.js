@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
-import dbConnect from '../../../utils/dbConnect';
-import { signJWT } from '../../../utils/jwt';
-import userSchema from '../../../utils/models/userSchema'
+import dbConnect from '../../../../utils/dbConnect';
+import { signJWT } from '../../../../utils/jwt';
+import userSchema from '../../../../utils/models/userSchema'
 import buildId from 'build-id'
 import { setCookies } from 'cookies-next';
 
@@ -36,7 +36,7 @@ export default async function handler(req, res) {
 
                 const accessId = buildId(50);
                 // create tokens
-                const payload = { id: userData._id, email: userData.email, accessId: accessId, lastRefreshId: decoded.refreshId }
+                const payload = { userId: userData._id, email: userData.email, links: userData.links, accessId: accessId, lastRefreshId: decoded.refreshId }
 
                 const accessToken = await signJWT(payload, '300s');
 

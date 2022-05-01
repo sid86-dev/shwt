@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     const user = await userSchema.findOne(filter);
 
     if (!user) {
-        return res.status(423).send({ success: false })
+        return res.send({ success: false })
     }
 
     try {
@@ -30,7 +30,8 @@ export default async function handler(req, res) {
         console.log(e)
         return res.send({ success: false })
     }
-    return res.status(423).send({ success: false })
+
+    return res.send({ success: false })
 
 
 }

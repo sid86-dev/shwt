@@ -30,7 +30,7 @@ const UrlSchema = new mongoose.Schema({
     },
     links: {
         type: Array,
-        require: false,
+        require: true,
         default: []
     }
 })

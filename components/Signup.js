@@ -58,7 +58,7 @@ export default function Signup() {
         }
         ).then((res) => {
             if (res.data.success) {
-                router.push('/account')
+                router.push('/')
             }
             else {
                 console.log(res.data.response);

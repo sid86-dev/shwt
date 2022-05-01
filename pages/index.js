@@ -5,76 +5,64 @@ import { Context } from '../context/Store'
 import React, { useContext, useEffect, useState } from 'react';
 import { getCookie, removeCookies } from 'cookies-next';
 
-export async function getServerSideProps({ req, res }) {
+export default function Home() {
 
-    var url = process.env.NEXT_PUBLIC_DOMAIN_URL;
-
-    async function sendReq(token, url) {
-
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'authorization': `Bearer ${token}`
-            }
-        });
-
-        return response.json();
-    }
-
-    // get token from storage
-    const access = await getCookie('accessToken', { req, res });
-    const refresh = getCookie('refreshToken', { req, res });
-
-    // send conditional request
-    if (!refresh) {
-        removeCookies('accessToken', { req, res });
-        return {
-            props: {
-                authData: { authorization: false, expired: true, payload: null },
-            },
-        };
-    }
-
-    else if (access) {
-        const data = await sendReq(access, url + '/api/user');
-
-        if (data.expired == true && data.authorization == true) {
-            const data = await sendReq(refresh, url + '/api/user/auth');
-            return {
-                props: {
-                    authData: data,
-                },
-            };
-        }
-        return {
-            props: {
-                authData: data,
-            },
-        };
-    }
-
-    else {
-        const data = await sendReq(refresh, url + '/api/user/auth');
-        return {
-            props: {
-                authData: data,
-            },
-        };
-    };
-
-    return {
-        props: {
-            authData: data,
-        },
-    };
-
-};
-
-export default function Home({ authData }) {
     const [state, setState] = useContext(Context);
 
+    const getUserData = async () => {
+
+        var url = process.env.NEXT_PUBLIC_DOMAIN_URL;
+
+        async function sendReq(token, url) {
+
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'authorization': `Bearer ${token}`
+                }
+            });
+
+            return response.json();
+        }
+
+        // get token from storage
+        const access = await getCookie('accessToken');
+        const refresh = await getCookie('refreshToken');
+
+        // send conditional request
+        if (!refresh) {
+            removeCookies('accessToken');
+            return { authorization: false, expired: true, payload: null }
+
+        }
+
+        else if (access) {
+            const data = await sendReq(access, url + '/api/user');
+
+            if (data.expired == true && data.authorization == true) {
+                const data = await sendReq(refresh, url + '/api/user/auth');
+                return data;
+
+            }
+            return data;
+
+        }
+
+        else {
+            const data = await sendReq(refresh, url + '/api/user/auth');
+            return data;
+
+        };
+
+        return data;
+    };
+
     useEffect(() => {
+
         const setAuthData = async () => {
+
+            const authData = await getUserData();
+            console.log(authData);
             await setState(prevState => ({
                 ...prevState,
                 ['user']: authData,

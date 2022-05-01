@@ -1,7 +1,6 @@
 ﻿import { useState } from 'react';
 import copy from 'copy-to-clipboard';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 export default function Result({ data }) {
 
@@ -44,7 +43,7 @@ export default function Result({ data }) {
 
             <ToastContainer
                 position="bottom-center"
-                autoClose={5000}
+                autoClose={4000}
                 hideProgressBar
                 newestOnTop={false}
                 closeOnClick

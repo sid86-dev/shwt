@@ -4,9 +4,10 @@ import { Context } from '../context/Store'
 import { useContext, useEffect, useState } from 'react';
 import Login from '../components/Login';
 import Signup from '../components/Signup';
-import { getCookie, removeCookies } from 'cookies-next';
+import { getCookie, removeCookies, setCookies } from 'cookies-next';
 import { useRouter } from 'next/router';
 import Profile from '../components/user/Profile';
+import buildId from 'build-id'
 
 Account.getInitialProps = async (ctx) => {
     const { query, res, req } = ctx;
@@ -64,10 +65,12 @@ Account.getInitialProps = async (ctx) => {
 export default function Account({ authData }) {
     const router = useRouter();
     const { query } = useRouter();
-
     const [state, setState] = useContext(Context);
 
     useEffect(() => {
+        const sessionId = buildId(50)
+        setCookies('session', sessionId);
+
         const tab = query.tab;
 
         if (authData.authorization == false && tab == undefined) {

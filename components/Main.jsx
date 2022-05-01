@@ -23,7 +23,7 @@ export default function Main() {
         if (data.response) {
             toast.info(data.response, {
                 position: "top-center",
-                autoClose: 3000,
+                autoClose: 2000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -37,7 +37,7 @@ export default function Main() {
 
             toast.success('Url saved!', {
                 position: "top-center",
-                autoClose: 3000,
+                autoClose: 2000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,

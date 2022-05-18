@@ -73,6 +73,30 @@ export default function Profile() {
         console.log('refreshing')
     }, [sessionId])
 
+    const updateSession = async () => {
+        removeCookies('session')
+        const sessionId = await buildId(50)
+        setCookies('session', sessionId);
+    }
+
+    async function deleteUrl(id) {
+        const promise = axios.post('/api/user/app/deleteUrl', { userId: user.userId, urlId: id });
+        toast.promise(promise, {
+            pending: 'Deleting Url...',
+            success: 'Url deleted!',
+            error: 'Something went wrong'
+        }
+        ).then(() => {
+
+            updateSession().then(() => {
+                router.push('/account')
+            }).catch((err) => console.log(err))
+
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
+
     return (
 
 
@@ -123,7 +147,7 @@ export default function Profile() {
                             <div className="filter-result">
                                 <p className="mb-30 ff-montserrat">Total URLs : {user.links.length}</p>
                                 {user.links.length == 0 ? <NoLink /> : user.links.map((id, index) =>
-                                    <Link Id={id} key={index} />
+                                    <Link Id={id} key={index} deleteUrl={deleteUrl} />
                                 ) }
                             </div>
                         ) 
@@ -139,7 +163,7 @@ export default function Profile() {
     )
 }
 
-export function Link({ Id }) {
+export function Link({ deleteUrl, Id }) {
 
     const router = useRouter();
     const [state, setState] = useContext(Context);
@@ -167,29 +191,7 @@ export function Link({ Id }) {
         await setRes(res.data);
     };
 
-    const updateSession = async () => {
-        removeCookies('session')
-        const sessionId = await buildId(50)
-        setCookies('session', sessionId);
-    }
 
-    async function deleteUrl(id) {
-        const promise = axios.post('/api/user/app/deleteUrl', { userId: user.userId, urlId: id });
-        toast.promise(promise, {
-            pending: 'Deleting Url...',
-            success: 'Url deleted!',
-            error: 'Something went wrong'
-        }
-        ).then(() => {
-
-            updateSession().then(() => {
-                router.push('/account')
-            }).catch((err) => console.log(err))
-
-        }).catch((error) => {
-                console.log(error);
-            });
-    }
 
     useEffect(() => {
         getUrlData().catch(console.log("Cannot fetch url data"));

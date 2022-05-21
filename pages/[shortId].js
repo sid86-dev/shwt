@@ -21,3 +21,10 @@ RedirectUrl.getInitialProps = async (ctx) => {
 
     return { shortId: shortId }
 }
+
+export default function RedirectUrl({ shortId }) {
+
+    return (<div>
+        <h1>{shortId}</h1>
+    </div>)
+}
